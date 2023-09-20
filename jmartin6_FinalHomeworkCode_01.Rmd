@@ -1,0 +1,246 @@
+---
+title: "**jmartin6_FinalHomeworkCode_01**"
+author: "**Jess Martin**"
+date: "**09/20/2023**"
+output: 
+  prettydoc::html_pretty:
+    theme: "hpstr"
+    toc: yes
+---
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# My Experience with Homework #1
+
+**Three things that I found difficult about this assignment:**
+
+1. After doing the peer commentary, I wanted to make prettification changes in my YAML. Yet, I struggled to load the prettydoc package. Restarting my computer did the trick.
+2. I initially had doubts about my success in challenge #4 due to the unusual output. I attempted another version, which yielded the same results. Subsequently, I confirmed with my peers that my approach was indeed correct.
+3. I struggled to extract every third element of the vector for challenge 1. Until, Nicole showed me that you need to load the stringr package directly into the Rmd file.
+
+**Three things that I found useful about this assignment:**
+
+1. I learned how to not include a warning message in my knitted Rmd file.
+2. I learned how to use bullet points (circle/empty).
+3. I learned how to restrict my array output to only a certain number of lines. Much easier to read this way.
+
+**Two things that I liked from my peers comments:**
+
+1. I LOVED the use of prettydoc in Brooke's Rmd!
+1. I LOVED the use of a graphic in Bhavya's Rmd!
+
+**One thing I think could have used improvement from my peers comments:**
+
+1. Nothing significant to note, only very minor edits were needed.
+
+
+# Peer Commentary from Brooke and Bhavya
+
+* In Challenge 1, when loading the stringr function gives a warning, you can make it so that the warning doesn't show up in your html output by referencing the prettification cheat sheets. Done! I supressed this warning message in my knitted Rmd file using: ```{r message=FALSE, warning=FALSE}.
+
+* If you don't want the #s in your final output, you do not need to include them when typing between the chunks. Done! This was a force of habit. I think the removal of the #'s looks significantly better. 
+
+* In challenge 2, the output of your code gives a string of elements. If you want the output to stay in matrix format, you can code it differently. Done! I like the look of both versions.
+
+* In challenge 3, the array is really long in the output. To make it more readable, you could restrict the output to only show a certain number of lines. Done! I used the str() function to complete this. Although, there may be a more efficient/ clear way of doing it.
+
+* In challenge 4, it is cool that you used two different methods! Thank you!
+
+* Also don't forget to make prettification changes in your YAML and body :) Done, definitely looks better now!
+
+<span style="font-size:16pt;">**(AN/BI588: Homework 1: Push It!)**</span> 
+
+<span style="font-size:16pt;">**(MODULE 04)**</span> 
+
+# <span style="font-size:12pt;">**(R Challenge 1)**</span>
+
+Directions:
+
+* First, create a vector of 1, word character strings comprising the first line of the novel Ulysses, by James Joyce: “Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed.”
+
+* Then, extract every third element of this vector.
+
+```{R Challenge 1}
+```{r message=FALSE, warning=FALSE}
+u<- c("Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed.")
+u
+require(stringr)
+u <- str_split_1(u, " ")
+u[seq(from = 1, to = 22, by = 3)]
+```
+
+# <span style="font-size:12pt;">**(R Challenge 2)**</span>
+
+Directions:
+
+* Given the matrix, m, above, extract the 2nd, 3rd, and 6th columns and assign them to the variable x
+
+* Given the matrix, m, above, extract the 6th to 8th row and assign them to the variable x
+
+* Given the matrix, m, above, extract the elements from row 2, column 2 to row 6, column 9 and assign them to the variable x
+
+```{R Challenge 2}
+m <- matrix(data = 1:80, nrow = 8, ncol = 10, byrow = FALSE)
+m
+x <- m[4, 5]
+x
+```
+
+```{r Challenge 2, CONTINUED}
+x <- m[,c(2,3,6)]
+x
+x <- m[c(6,8), ]
+x
+x <- m[2,2]: m[6,9]
+x
+```
+
+# <span style="font-size:12pt;">**(R Challenge 3)**</span>
+
+Directions:
+
+* Construct a 4-dimensional, 400 element array (5 x 5 x 4 x 4) named a consisting of the numbers 400 to 1 (i.e., a descending series)
+
+* Given this matrix, what would the following return?
+
+  + a[1, 1, 1, 2]
+
+  + a[2, 3, 2, ]
+
+  + a[1:5, 1:5, 3, 3]
+
+```{R Challenge 3}
+a <- array(data = 400:1, dim = c(5, 5, 4, 4))
+str(a)
+a
+
+```
+```{r Challenge 3, CONTINUED}
+a[1, 1, 1, 2]
+```
+```{r Challenge 3, CONTINUED 2}
+a[2, 3, 2,]
+```
+```{r Challenge 3, CONTINUED 3}
+a[1:5, 1:5, 3, 3]
+```
+
+# <span style="font-size:12pt;">**(R Challenge 4)**</span>
+
+Directions:
+
+* Create a list representing this (simplified) primate taxonomy:
+
+* Primates
+  + Haplorhini
+    * Anthropoidea
+      + Platyrrhini
+        * Cebidae
+        * Atelidae
+        * Pitheciidae
+      + Catarrhini
+        * Cercopithecidae
+        * Hylobatidae
+        * Hominidae
+    * Tarsioidea
+      + Tarsiidae
+  + Strepsirhini
+    * Lorisoidea
+      + Lorisidae
+      + Galagidae
+    * Lemuroidea
+      + Cheirogaleidae
+      + Lepilemuridae
+      + Indriidae
+      + Lemuridae
+      + Daubentoniidae
+
+
+```{R Challenge 4}
+Platyrrhini <- c("Cebidae", "Atelidae", "Pitheciidae")
+Catarrhini <- c("Cercopithecidae", "Hylobatidae", "Hominidae")
+Anthropoidea <- c("Catarrhini", "Platyrrhini")
+names(Anthropoidea) <- list("Platyrrhini", "Catarrhini")
+Tarsioidea <- c("Tarsiidae")
+Haplorhini <- list(Anthropoidea, Tarsioidea)
+names(Haplorhini) <- list("Anthropoidea", "Tarsioidea")
+Lemuroidea <- c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae",
+    "Daubentoniidae")
+Lorisoidea <- c("Lorisidae", "Galagidae")
+Strepsirhini <- list(Lemuroidea, Lorisoidea)
+names(Strepsirhini) <- list("Lemuroidea", "Lorisoidea")
+Strepsirhini
+primates <- list(Haplorhini, Strepsirhini)
+names(primates) <- list("Haplorhini", "Strepsirhini")
+primates
+```
+
+<span style="font-size:12pt;">**(R Challenge 4, Version 2)**</span>
+
+```{R Challenge 4, Version 2}
+  Primates = list(
+    Haplorhini = list(
+      Anthropoidea = list(
+        Platyrrhini = list(
+          Cebidae = NULL,
+          Atelidae = NULL,
+          Pitheciidae = NULL
+        ),
+        Catarrhini = list(
+          Cercopithecidae = NULL,
+          Hylobatidae = NULL,
+          Hominidae = NULL
+        )
+      ),
+      Tarsioidea = list(
+        Tarsiidae = NULL
+      )
+    ),
+    Strepsirhini = list(
+      Lorisoidea = list(
+        Lorisidae = NULL,
+        Galagidae = NULL
+      ),
+      Lemuroidea = list(
+        Cheirogaleidae = NULL,
+        Lepilemuridae = NULL,
+        Indriidae = NULL,
+        Lemuridae = NULL,
+        Daubentoniidae = NULL
+      )
+    )
+  )
+print(Primates)
+```
+
+# <span style="font-size:12pt;">**(R Challenge 5)**</span>
+
+Directions:
+
+* Store the following numbers as a 5 x 3 matrix, called “m3”: 3, 0, 1 ,23, 1, 2, 33,    1, 1, 42, 0, 1, 41, 0, 2. Be sure to fill the matrix ROW-WISE.
+
+* Then, do the following:
+
+* Coerce the matrix to a data frame.
+
+* As a data frame, coerce the second column to be logical-valued
+
+* As a data frame, coerce the third column to be factor-valued
+
+* When you are done, use the str() command to show the data type for each variable in   your dataframe.
+  
+```{R Challenge 5}
+v1 <- matrix(data = c(3, 0, 1, 23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow =  5, ncol = 3)
+m3 <- rbind(v1)
+m3
+df <- data.frame(m3)
+df
+df[, 2] <- as.logical(df[,2])
+df
+df[, 3] <- as.factor(df[, 3])
+df
+str(df)
+```
